@@ -10,10 +10,12 @@ import com.udacity.jdnd.course3.critter.repositories.PetsRepository;
 import com.udacity.jdnd.course3.critter.repositories.SchedulesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@Transactional
 public class ScheduleService {
 
     @Autowired
@@ -36,6 +38,7 @@ public class ScheduleService {
         Pet pet = petsRepository.getOne(petId);
         return schedulesRepository.getAllByPetsContains(pet);
     }
+
 
     public List<Schedule> getAllSchedulesForEmployee(long employeeId){
         Employee employee = employeesRepository.getOne(employeeId);
